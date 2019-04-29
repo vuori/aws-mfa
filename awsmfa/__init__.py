@@ -278,8 +278,9 @@ def validate(args, config):
 
 def get_credentials(short_term_name, lt_key_id, lt_access_key, args, config):
     if args.token:
-        logger.debug("Received token as argument")
-        mfa_token = '%s' % (args.token)
+        arg_token = args.token.strip()
+        logger.debug("Received token as argument: %r", arg_token)
+        mfa_token = '%s' % (arg_token,)
     else:
         console_input = prompter()
         mfa_token = console_input('Enter AWS MFA code for device [%s] '
